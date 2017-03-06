@@ -73,11 +73,11 @@
         }
 
         function minTime(timeTaken) {
-            var min
+            var min // BUG: Co tu przypisać w pierwszej kolejności
             if (min > timeTaken) {
                 min = timeTaken
-                return min
-            } else return min
+              }
+              return min
         }
         appearAfterDelay()
         document.getElementById('shape').onclick = function() {
