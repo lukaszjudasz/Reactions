@@ -32,14 +32,12 @@
         Your time: <span id='timeTaken'></span>
     </p>
     <p class='bold'>
-        Min time: <span id='timeMin'></span>
+        Your best time: <span id='timeMin'></span>
     </p>
     <div id='shape'>
 
     </div>
     <script type="text/javascript">
-        var start = new Date().getTime();
-
         function getRandomColor() {
             var letters = '0123456789ABCDEF';
             var color = '#';
@@ -72,20 +70,19 @@
             setTimeout(makeShapeAppear, Math.random() * 2000)
         }
 
-        function minTime(timeTaken) {
-            var min // BUG: Co tu przypisać w pierwszej kolejności
-            if (min > timeTaken) {
-                min = timeTaken
-              }
-              return min
+        function getMinOfArray(timeArray) {
+            return Math.min.apply(null, timeArray);
         }
+        var timeArray = [];
+        var start = new Date().getTime();
         appearAfterDelay()
         document.getElementById('shape').onclick = function() {
             document.getElementById('shape').style.display = 'none'
             var end = new Date().getTime();
             var timeTaken = (end - start) / 1000
             document.getElementById('timeTaken').innerHTML = timeTaken + ' s'
-            document.getElementById('timeMin').innerHTML = minTime(timeTaken) + ' s'
+            timeArray.push(timeTaken)
+            document.getElementById('timeMin').innerHTML = getMinOfArray(timeArray) + ' s'
             appearAfterDelay()
         }
     </script>
