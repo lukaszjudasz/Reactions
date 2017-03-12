@@ -34,6 +34,10 @@
     <p class='bold'>
         Your best time: <span id='timeMin'></span>
     </p>
+    <button id="reset">Reset record</button>
+    <p id="reser-notice">
+
+    </p>
     <div id='shape'>
 
     </div>
@@ -77,6 +81,7 @@
         var start = new Date().getTime();
         appearAfterDelay()
         document.getElementById('shape').onclick = function() {
+          document.getElementById('reser-notice').innerHTML = ""
             document.getElementById('shape').style.display = 'none'
             var end = new Date().getTime();
             var timeTaken = (end - start) / 1000
@@ -84,6 +89,15 @@
             timeArray.push(timeTaken)
             document.getElementById('timeMin').innerHTML = getMinOfArray(timeArray) + ' s'
             appearAfterDelay()
+        }
+
+        document.getElementById('reset').onclick = function() {
+            document.getElementById('reser-notice').innerHTML = "You deleted record "
+            timeArray = [];
+            timeArray.length = 0
+            document.getElementById('timeMin').innerHTML = ''
+            makeShapeAppear()
+
         }
     </script>
 
